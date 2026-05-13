@@ -3,7 +3,7 @@ import os
 
 from groq import Groq
 
-class IngredientAgent():
+class IngredientFinder():
     def __init__(self):
         self.agent = Groq(api_key=os.getenv("GROQ_API_KEY"))
     

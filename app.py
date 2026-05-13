@@ -1,10 +1,10 @@
 from dotenv import load_dotenv
 import streamlit as st
-from agent import RecipeAgent, IngredientAgent
+from agent import RecipeAgent, IngredientFinder
 
 load_dotenv()
 recipe_agent = RecipeAgent()
-ingrdient_agent = IngredientAgent()
+ingrdient_finder = IngredientFinder()
 
 st.set_page_config(page_title="Fridge to Recipe", page_icon="🍳")
 st.markdown("## 🍳 Fridge → Recipe")
@@ -19,7 +19,7 @@ if uploaded:
 
     if st.button("🔍 Scan Ingredients"):
         with st.spinner("Scanning with Groq Vision..."):
-            ingredients = ingrdient_agent.extract_ingredients_from_image_groq(uploaded.read(), ext)
+            ingredients = ingrdient_finder.extract_ingredients_from_image_groq(uploaded.read(), ext)
             st.session_state["ingredients"] = ingredients
 
     if "ingredients" in st.session_state:
